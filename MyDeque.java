@@ -14,6 +14,9 @@ public class MyDeque<E>{
 
 
   public MyDeque(int initialCapacity){
+    if(initialCapacity < 1){
+      throw new IllegalArgumentException();
+    }
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
@@ -26,11 +29,42 @@ public class MyDeque<E>{
 
 
 
-  public String toString(){ }
-  public void addFirst(E element){ }
+  public String toString(){
+    String ans = "{";
+    for(int i = 0;i < size;i++){
+      ans = ans + data[i] + " ";
+    }
+    return ans + "}";
+  }
+  public void addFirst(E element){
+    if(size == data.length){
+      resize();
+    }
+    if(end < start){
+      if(end + 1 == start){
+
+      }
+
+    }
+  }
   public void addLast(E element){ }
   public E removeFirst(){ }
   public E removeLast(){ }
-  public E getFirst(){ }
-  public E getLast(){ }
+
+  public E getFirst(){
+    return data[start];
+  }
+
+  public E getLast(){
+    return data[end];
+  }
+
+  public void resize(){
+    E[] new = (E[]) new Object[data.length * 2];
+    for(int i = 0; i < data.length;i++){
+      new[i]= data[i];
+    }
+    data = new;
+  }
+
 }
