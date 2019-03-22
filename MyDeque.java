@@ -14,9 +14,6 @@ public class MyDeque<E>{
 
 
   public MyDeque(int initialCapacity){
-    if(initialCapacity < 1){
-      throw new IllegalArgumentException();
-    }
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
@@ -60,11 +57,12 @@ public class MyDeque<E>{
   }
 
   public void resize(){
-    E[] new = (E[]) new Object[data.length * 2];
+    @SuppressWarnings("unchecked")
+    E[] newA = (E[])new Object[data.length * 2 + 1];
     for(int i = 0; i < data.length;i++){
-      new[i]= data[i];
+      newA[i]= data[i];
     }
-    data = new;
+    data = newA;
   }
 
 }
