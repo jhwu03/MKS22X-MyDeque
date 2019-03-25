@@ -80,7 +80,7 @@ public class MyDeque<E>{
       end = 0;
     }else{
       if (size != 0){
-        end++; 
+        end++;
       }
     }
   }
@@ -127,10 +127,16 @@ public class MyDeque<E>{
   }
 
   public E getFirst(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
     return data[start];
   }
 
   public E getLast(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
     return data[end];
   }
 
