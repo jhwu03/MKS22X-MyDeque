@@ -34,12 +34,15 @@ public class MyDeque<E>{
     return ans + "}";
   }
   public void addFirst(E element){
+    if(element == null){
+      throw new NullPointerException();
+    }
     if(size == data.length){
       resize();
     }
-    if(end < start){
-      if(end + 1 == start){
-
+    if(size != 0){
+      if(start == 0){
+        start = data.length - 1;
       }
 
     }
@@ -59,8 +62,14 @@ public class MyDeque<E>{
   public void resize(){
     @SuppressWarnings("unchecked")
     E[] newA = (E[])new Object[data.length * 2 + 1];
+    int s = start;
     for(int i = 0; i < data.length;i++){
-      newA[i]= data[i];
+      newA[i]= data[s];
+      if( s == data. length - 1){
+        s = 0;
+      }else{
+        s++;
+      }
     }
     data = newA;
   }
