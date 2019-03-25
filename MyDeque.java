@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -11,8 +12,6 @@ public class MyDeque<E>{
     size = 0;
   }
 
-
-
   public MyDeque(int initialCapacity){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
@@ -22,9 +21,6 @@ public class MyDeque<E>{
   public int size(){
     return size;
   }
-
-
-
 
   public String toString(){
     String ans = "{";
@@ -56,6 +52,7 @@ public class MyDeque<E>{
     if (element == null){
       throw new NullPointerException();
     }
+    if(size != 0){
     if(size == data.length){
       resize();
       start = 0;
@@ -67,11 +64,48 @@ public class MyDeque<E>{
         end++; //if we're just adding for the first time, then end should not increment away from start
       }
     }
+  }
     size++;
     data[end] = element;
   }
-  public E removeFirst(){ }
-  public E removeLast(){ }
+
+  public E removeFirst(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
+    E removed = data[start];
+    data[start] = null;
+    if( start != data.length - 1){
+      start++;
+    }else{
+      start = 0;
+    }
+    size--;
+    if(size == 0){
+      start = 0;
+      end = 0;
+    }
+    return removed;
+  }
+
+  public E removeLast(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
+    E removed = data[end];
+    data[end] = null;
+    if(end != 0){
+      end--;
+    }else{
+      end = data.length - 1;
+    }
+    size--;
+    if(size == 0){
+      start = 0;
+      end = 0;
+    }
+    return removed;
+  }
 
   public E getFirst(){
     return data[start];
