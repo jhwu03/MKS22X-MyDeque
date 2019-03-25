@@ -80,7 +80,7 @@ public class MyDeque<E>{
       end = 0;
     }else{
       if (size != 0){
-        end++; //if we're just adding for the first time, then end should not increment away from start
+        end++; 
       }
     }
   }
